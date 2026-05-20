@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
+
     static String[] nomes = new String[8];
     static String[] classes = new String[8];
     static int[] ataques = new int[8];
@@ -42,7 +43,7 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.println("4 - Listar por classe");
+                    listarPorClasse(in);
                     break;
 
                 case 5:
@@ -80,6 +81,7 @@ public class Main {
             }
 
             System.out.println("Digite o ataque do lutador(a):");
+            System.out.println("Digite um valor entre 0 e 100!");
             ataques[i] = in.nextInt();
 
             while (ataques[i] > 100 || ataques[i] < 0) {
@@ -88,6 +90,7 @@ public class Main {
             }
 
             System.out.println("Digite a defesa do lutador(a):");
+            System.out.println("Digite um valor entre 0 e 100!");
             defesas[i] = in.nextInt();
 
             while (defesas[i] > 100 || defesas[i] < 0) {
@@ -96,6 +99,7 @@ public class Main {
             }
 
             System.out.println("Digite a agilidade do lutador(a):");
+            System.out.println("Digite um valor entre 0 e 100!");
             agilidades[i] = in.nextInt();
 
             while (agilidades[i] > 100 || agilidades[i] < 0) {
@@ -121,6 +125,7 @@ public class Main {
         }
 
         System.out.println("Lutadores cadastrados:");
+        System.out.println(" ");
 
         for (int i = 0; i < totalCadastrados; i++) {
             System.out.println("-------------------------");
@@ -130,6 +135,53 @@ public class Main {
             System.out.println("Defesa: " + defesas[i]);
             System.out.println("Agilidade: " + agilidades[i]);
             System.out.println("Dano: " + danos[i]);
+        }
+    }
+
+    private static void buscarPorNome(Scanner in) {
+        System.out.println("Digite o nome do lutador que deseja buscar:");
+        String nome = in.nextLine();
+
+        boolean encontrou = false;
+
+        for (int i = 0; i < totalCadastrados; i++) {
+            if (nomes[i].equalsIgnoreCase(nome)) {
+                System.out.println("Lutador(a) " + nomes[i] + " encontrado!");
+                System.out.println(" ");
+                System.out.println("Status:");
+                System.out.println("Nome: " + nomes[i]);
+                System.out.println("Classe: " + classes[i]);
+                System.out.println("Ataque: " + ataques[i]);
+                System.out.println("Defesa: " + defesas[i]);
+                System.out.println("Agilidade: " + agilidades[i]);
+                System.out.println("Dano: " + danos[i]);
+
+                encontrou = true;
+            }
+        }
+
+        if (!encontrou) {
+            System.out.println("Nenhum lutador com esse nome foi encontrado.");
+        }
+    }
+
+    private static void listarPorClasse(Scanner in) {
+        System.out.println("Digite a classe que deseja ver os lutadores:");
+        String classe = in.nextLine();
+
+        System.out.println("Lutadores da classe " + classe + ":");
+
+        boolean encontrou = false;
+
+        for (int i = 0; i < totalCadastrados; i++) {
+            if (classes[i].equalsIgnoreCase(classe)) {
+                System.out.println(nomes[i]);
+                encontrou = true;
+            }
+        }
+
+        if (!encontrou) {
+            System.out.println("Nenhum lutador encontrado nessa classe.");
         }
     }
 }

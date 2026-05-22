@@ -39,7 +39,7 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("3 - Buscar por nome");
+                    buscarPorNome(in);
                     break;
 
                 case 4:
